@@ -16,7 +16,6 @@
 ### Association
 
 - has_many :items
-- has_many :comments
 - has_many :orders
 
 ## items テーブル
@@ -28,7 +27,7 @@
 | goods_category_id | integer    | null: false                    |
 | goods_status_id   | integer    | null: false                    |
 | shipping_cost_id  | integer    | null: false                    |
-| shipping_area_id  | integer    | null: false                    |
+| prefecture_id     | integer    | null: false                    |
 | shipping_date_id  | integer    | null: false                    |
 | price             | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
@@ -38,27 +37,13 @@ goods_image       : ActiveStorageで実装するため、デーブルに記載�
 goods_category    : ActiveHashを用います。そのためのinteger型です。
 goods_status      : ActiveHashを用います。そのためのinteger型です。
 shipping_cost     : ActiveHashを用います。そのためのinteger型です。
-shipping_area     : ActiveHashを用います。そのためのinteger型です。
+prefecture        : ActiveHashを用います。そのためのinteger型です。(addresses テーブルと共通)
 shipping_date     : ActiveHashを用います。そのためのinteger型です。
 
 ### Association
 
 - belongs_to :user
-- has_many   :comments
 - has_one    :order
-
-## comments テーブル
-
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| comment_text | text       | null: false                    |
-| user         | references | null: false, foreign_key: true |
-| item         | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :item
-- belongs_to :user
 
 ## orders テーブル
 
@@ -90,7 +75,7 @@ shipping_date     : ActiveHashを用います。そのためのinteger型です�
 | order         | references | null: false, foreign_key: true |
 
 ### 備考
-prefecture: ActiveHashを用います。そのためのinteger型です。
+prefecture        : ActiveHashを用います。そのためのinteger型です。(items テーブルと共通)
 
 ### Association
 
