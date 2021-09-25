@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, except: [:index, :show, :new, :create]
+  before_action :set_item, only: [:edit, :show]
+
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -19,11 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -43,8 +43,12 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    item = Item.find(params[:id])
     # 商品が売れている条件を商品購入機能実装後に追加する予定
-    redirect_to action: :index unless user_signed_in? && current_user.id == item.user_id
+    redirect_to action: :index unless user_signed_in? && current_user.id == set_item.user_id
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 end
