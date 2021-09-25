@@ -17,9 +17,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Goods name can't be blank")
       end
       it '商品名が40文字を超えると出品できない' do
-        @item.goods_name = 'a'*41
+        @item.goods_name = 'a' * 41
         @item.valid?
-        expect(@item.errors.full_messages).to include("Goods name is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Goods name is too long (maximum is 40 characters)')
       end
       it '商品の説明が空では出品できない' do
         @item.goods_description = ''
@@ -27,9 +27,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Goods description can't be blank")
       end
       it '商品の説明が1000文字を超えると出品できない' do
-        @item.goods_description = 'a'*1001
+        @item.goods_description = 'a' * 1001
         @item.valid?
-        expect(@item.errors.full_messages).to include("Goods description is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Goods description is too long (maximum is 1000 characters)')
       end
       it 'カテゴリーが空では出品できない' do
         @item.goods_category_id = 1
@@ -69,27 +69,27 @@ RSpec.describe Item, type: :model do
       it '販売価格が300未満では出品できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '販売価格が9,999,999を超えると出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '販売価格が数値ではない場合出品できない' do
         @item.price = 'test'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it '販売価格の数値が全角の場合出品できない' do
         @item.price = '３３３'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it 'ユーザーが紐付いていなければ出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
