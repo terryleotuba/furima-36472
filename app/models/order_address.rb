@@ -7,8 +7,8 @@ class OrderAddress
   validates :city, presence: true
   validates :house_number, presence: true
   validates :phone_number, presence: true, numericality: { only_integer: true, message: 'is invalid. Input only number' }, length: { in: 10..11 }
-  validates :user_id
-  validates :item_id
+  validates :user_id, presence: true
+  validates :item_id, presence: true
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
