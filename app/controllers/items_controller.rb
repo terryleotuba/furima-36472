@@ -49,8 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    # 商品が売れている条件を商品購入機能実装後に追加する予定
-    redirect_to action: :index unless user_signed_in? && current_user.id == set_item.user_id
+    redirect_to action: :index unless user_signed_in? && current_user.id == set_item.user_id && set_item.order.blank?
   end
 
   def set_item
