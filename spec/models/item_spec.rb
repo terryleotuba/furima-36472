@@ -57,9 +57,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping date can't be blank")
       end
       it '商品画像が空では出品できない' do
-        @item.image = nil
+        @item.images = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Images can't be blank")
       end
       it '販売価格が空では出品できない' do
         @item.price = ''
