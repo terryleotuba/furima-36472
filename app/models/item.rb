@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
   has_one    :order
-  has_one_attached :image
+  has_many_attached :images
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :goods_category
@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_cost
   belongs_to :shipping_date
 
-  validates :image, presence: true
+  validates :images, presence: true
   validates :goods_name, presence: true, length: { maximum: 40 }
   validates :goods_description, presence: true, length: { maximum: 1000 }
   validates :price, presence: true,
