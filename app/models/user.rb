@@ -5,14 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :password,
-            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'is invalid. Include both letters and numbers' }
+            format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'は不正な値です。英字と数字の両方を含めて設定してください' }
 
   with_options presence: true do
     validates :nickname
-    validates :family_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters.' }
-    validates :given_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters.' }
-    validates :family_name_reading, format: { with: /\A[ァ-ヶー]+\z/, message: 'is invalid. Input full-width katakana characters.' }
-    validates :given_name_reading, format: { with: /\A[ァ-ヶー]+\z/, message: 'is invalid. Input full-width katakana characters.' }
+    validates :family_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'は不正な値です。全角を入力してください' }
+    validates :given_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'は不正な値です。全角を入力してください' }
+    validates :family_name_reading, format: { with: /\A[ァ-ヶー]+\z/, message: 'は不正な値です。全角のカタカナを入力してください' }
+    validates :given_name_reading, format: { with: /\A[ァ-ヶー]+\z/, message: 'は不正な値です。全角のカタカナを入力してください' }
     validates :birthday
   end
 
