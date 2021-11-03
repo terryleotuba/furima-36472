@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :move_to_index, except: [:index, :show, :new, :create]
+  before_action :move_to_index, except: [:index, :show, :new, :create, :search]
   before_action :set_item, only: [:edit, :show]
 
   def index
@@ -39,6 +39,10 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     item.destroy
     redirect_to root_path
+  end
+
+  def search
+    @items = Item.search(params[:keyword]).order('created_at DESC')
   end
 
   private

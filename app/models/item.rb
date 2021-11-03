@@ -20,4 +20,12 @@ class Item < ApplicationRecord
   validates :prefecture_id, numericality: { other_than: 0, message: "を選択してください" }
   validates :shipping_cost_id, numericality: { other_than: 1, message: "を選択してください" }
   validates :shipping_date_id, numericality: { other_than: 1, message: "を選択してください" }
+
+  def self.search(search)
+    if search != ""
+      Item.where('goods_name LIKE(?)', "%#{search}%").or(Item.where('goods_description LIKE(?)', "%#{search}%"))
+    else
+      Item.all
+    end
+  end
 end
